@@ -1,0 +1,10 @@
+[
+  {
+    "id": "1",
+    "titulo": "BUNKER EPP v1.0",
+    "descripcion": "Esta es la versión definitiva de mi proyecto ejecutable para sistemas Android. Incluye todas las funciones desbloqueadas.",
+    "ruta_imagen": "assets/imagenes/mifoto.png",
+    "ruta_descarga": "assets/descargas/mi_juego.apk"
+  }
+]
+
