@@ -197,7 +197,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             fit: BoxFit.cover,
                           ),
                         ),
-                        child: Container(color: Colors.black.withValues(alpha: 0.35)),
+                        child: Container(color: Colors.black.withValues(alpha: 0.55)),
                       ),
                       const Positioned.fill(
                         child: Center(
@@ -215,16 +215,37 @@ class _HomeScreenState extends State<HomeScreen> {
                                     fontWeight: FontWeight.bold, 
                                     height: 1.1,
                                     letterSpacing: -1,
+                                        // --- NUEVO: Sombra de alto impacto para separar la letra del fondo ---
+                                    shadows: [
+                                      Shadow(
+                                        color: Colors.black45,
+                                        offset: Offset(0, 4),
+                                        blurRadius: 12,
+                                      ),
+                                    ],
                                   ),
                                 ),
                                 SizedBox(height: 16),
                                 SizedBox(
                                   width: 500,
-                                  child: Text(
-                                    "Una experiencia de descarga diseñada para tu comodidad: aplicaciones Android verificadas listas para instalar en un solo clic.",
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(color: Colors.white70, fontSize: 15, height: 1.5),
-                                  ),
+                                                                child: Text(
+                                "Una experiencia de descarga diseñada para tu comodidad: aplicaciones Android verificadas listas para instalar en un solo clic.",
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  color: Colors.white, // Pasado a blanco puro para más contraste
+                                  fontSize: 15, 
+                                  height: 1.5,
+                                  // CORREGIDO: shadows ahora vive felizmente DENTRO de las propiedades del TextStyle
+                                  shadows:  [
+                                    Shadow(
+                                      color: Colors.black54,
+                                      offset: Offset(0, 2),
+                                      blurRadius: 6,
+                                    ),
+                                  ],
+                                ),
+                              ),
+
                                 ),
                               ],
                             ),
@@ -376,35 +397,27 @@ class _HomeScreenState extends State<HomeScreen> {
                             const Text("Canales oficiales de asistencia técnica y comunidad:", style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600, color: Colors.black87)),
                             const SizedBox(height: 25),
                             
-                            // CANAL 1: CORREO ELECTRÓNICO (INTERACTIVO)
-                            InkWell(
-                              onTap: () => launchUrl(Uri.parse("mailto:felixvargassoluciones@gmail.com")), // Abre gestor de correo
-                              child: Container(
-                                width: double.infinity,
-                                padding: const EdgeInsets.all(22),
-                                decoration: BoxDecoration(
-                                  color: const Color(0xFFF9F9F9),
-                                  border: Border.all(color: const Color(0xFFEFEFEF), width: 1),
-                                ),
-                                child: const Row(
-                                  children: [
-                                    Icon(Icons.email_outlined, color: Colors.black, size: 22),
-                                    SizedBox(width: 15),
-                                    Text("felixvargassoluciones@gmail.com", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.black)),
-                                  ],
-                                ),
-                              ),
-                            ),
-                            const SizedBox(height: 15),
+                                                            // ACCESO DIRECTO A WHATSAPP REAL (MÓVIL + PC CORREGIDO)
+                                InkWell(
+                                  onTap: () async {
+                                    // Formato de enlace universal optimizado para todas las plataformas
+                                    const String telefono = "527201494833";
+                                    final Uri whatsappWebUrl = Uri.parse("https://wa.me");
+                                    final Uri whatsappAppUrl = Uri.parse("whatsapp://send?phone=$telefono");
 
-                            // CANALES RESPONSIVOS: WHATSAPP Y FACEBOOK
-                            Wrap(
-                              spacing: 15,
-                              runSpacing: 15,
-                              children: [
-                                // ACCESO DIRECTO A WHATSAPP REAL
-                                InkWell(
-                                  onTap: () => launchUrl(Uri.parse("https://wa.me")), // Enlace limpio sin espacios ni signos
+                                    try {
+                                      // Primero intentamos abrir la aplicación nativa en el móvil
+                                      if (await canLaunchUrl(whatsappAppUrl)) {
+                                        await launchUrl(whatsappAppUrl, mode: LaunchMode.externalApplication);
+                                      } else {
+                                        // Si falla o estamos en PC, usamos la redirección web universal
+                                        await launchUrl(whatsappWebUrl, mode: LaunchMode.externalApplication);
+                                      }
+                                    } catch (e) {
+                                      // Respaldo de seguridad definitivo si el protocolo móvil es rechazado
+                                      await launchUrl(whatsappWebUrl, mode: LaunchMode.externalApplication);
+                                    }
+                                  },
                                   child: Container(
                                     width: screenWidth > 750 ? 392 : double.infinity,
                                     padding: const EdgeInsets.all(22),
@@ -412,36 +425,20 @@ class _HomeScreenState extends State<HomeScreen> {
                                       color: const Color(0xFFF9F9F9),
                                       border: Border.all(color: const Color(0xFFEFEFEF), width: 1),
                                     ),
-                                    child: const Row(
+                                    child: Row(
                                       children: [
-                                        Icon(Icons.phone_android_outlined, color: Colors.black, size: 22),
-                                        SizedBox(width: 15),
-                                        Text("+52 720 149 4833", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.black)),
+                                        const Icon(Icons.forum_outlined, color: Colors.black, size: 22), 
+                                        const SizedBox(width: 15),
+                                        Text(
+                                          "+52 720 149 4833", 
+                                          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.black),
+                                        ),
                                       ],
                                     ),
                                   ),
                                 ),
-                                // ENLACE A TU PAGINA O PERFIL DE FACEBOOK
-                                InkWell(
-                                  onTap: () => launchUrl(Uri.parse("https://facebook.com")), // Reemplaza aquí con el enlace final de tu Facebook
-                                  child: Container(
-                                    width: screenWidth > 750 ? 392 : double.infinity,
-                                    padding: const EdgeInsets.all(22),
-                                    decoration: BoxDecoration(
-                                      color: const Color(0xFFF9F9F9),
-                                      border: Border.all(color: const Color(0xFFEFEFEF), width: 1),
-                                    ),
-                                    child: const Row(
-                                      children: [
-                                        Icon(Icons.facebook_outlined, color: Colors.black, size: 22), // Icono oficial de Facebook
-                                        SizedBox(width: 15),
-                                        Text("Síguenos en Facebook", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.black)),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
+
+                            
                           ],
                         ),
                       ),
@@ -515,13 +512,13 @@ class _HomeScreenState extends State<HomeScreen> {
               physics: const BouncingScrollPhysics(),
               child: Text(
                 (item['descripcion'] ?? '').toString().replaceAll('\\n', '\n'),
-                 //maxLines: 20, // <-- MODIFICA AQUÍ: Cambia el número por la cantidad de líneas que desees
-                //overflow: TextOverflow.ellipsis, // Recorta con puntos suspensivos (...) si el texto supera el límite
+                 maxLines: 20, // <-- MODIFICA AQUÍ: Cambia el número por la cantidad de líneas que desees
+                overflow: TextOverflow.ellipsis, // Recorta con puntos suspensivos (...) si el texto supera el límite
                 style: const TextStyle(color: Colors.black54, fontSize: 14, height: 1.5),
               ),
             ),
           ),
-          const SizedBox(height: 20),
+          const SizedBox(height: 20), 
           SizedBox(
             width: double.infinity,
             height: 48,
