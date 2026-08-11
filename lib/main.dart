@@ -512,7 +512,7 @@ class _HomeScreenState extends State<HomeScreen> {
               physics: const BouncingScrollPhysics(),
               child: Text(
                 (item['descripcion'] ?? '').toString().replaceAll('\\n', '\n'),
-                 maxLines: 20, // <-- MODIFICA AQUÍ: Cambia el número por la cantidad de líneas que desees
+                 maxLines: 50, // <-- MODIFICA AQUÍ: Cambia el número por la cantidad de líneas que desees
                 overflow: TextOverflow.ellipsis, // Recorta con puntos suspensivos (...) si el texto supera el límite
                 style: const TextStyle(color: Colors.black54, fontSize: 14, height: 1.5),
               ),

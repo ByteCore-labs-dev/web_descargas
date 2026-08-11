@@ -67119,7 +67119,7 @@ if(o==null)o=n.i(a,"nombre")
 o=A.Gx(J.ds(o==null?"SIN T\xcdTULO":o).toUpperCase(),s,s,B.LB)
 n=n.i(a,"descripcion")
 n=J.ds(n==null?"":n)
-return A.eB(A.rH(A.d([m,B.vE,o,B.Je,A.RT(A.ahQ(A.Gx(A.aek(n,"\\n","\n"),20,B.iS,B.L_),s,B.x_)),B.vE,A.kf(new A.Cl(new A.a6q(this,a),s,s,s,A.apa(s,s,B.k,s,s,s,0,s,s,B.i,s,s,s,s,new A.ct(A.l4(8),B.r),s,s,s,s,s),s,s,!1,s,s,B.Ou,s),48,1/0)],t.E),B.at),s,new A.dU(B.i,s,q,r,p,s,B.aD),s,s,s,B.Ak,s)}}
+return A.eB(A.rH(A.d([m,B.vE,o,B.Je,A.RT(A.ahQ(A.Gx(A.aek(n,"\\n","\n"),50,B.iS,B.L_),s,B.x_)),B.vE,A.kf(new A.Cl(new A.a6q(this,a),s,s,s,A.apa(s,s,B.k,s,s,s,0,s,s,B.i,s,s,s,s,new A.ct(A.l4(8),B.r),s,s,s,s,s),s,s,!1,s,s,B.Ou,s),48,1/0)],t.E),B.at),s,new A.dU(B.i,s,q,r,p,s,B.aD),s,s,s,B.Ak,s)}}
 A.a6r.prototype={
 $0(){this.a.w=this.b},
 $S:0}
