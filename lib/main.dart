@@ -396,6 +396,48 @@ class _HomeScreenState extends State<HomeScreen> {
                             const SizedBox(height: 35),
                             const Text("Canales oficiales de asistencia técnica y comunidad:", style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600, color: Colors.black87)),
                             const SizedBox(height: 25),
+
+                            // CANAL 1: CORREO ELECTRÓNICO (INTERACTIVO)
+                            InkWell(
+                              onTap: () => launchUrl(Uri.parse("mailto:felixvargassoluciones@gmail.com")), // Abre gestor de correo
+                              child: Container(
+                                width: double.infinity,
+                                padding: const EdgeInsets.all(22),
+                                decoration: BoxDecoration(
+                                  color: const Color(0xFFF9F9F9),
+                                  border: Border.all(color: const Color(0xFFEFEFEF), width: 1),
+                                ),
+                                child: const Row(
+                                  children: [
+                                    Icon(Icons.email_outlined, color: Colors.black, size: 22),
+                                    SizedBox(width: 15),
+                                    Text("felixvargassoluciones@gmail.com", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.black)),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            const SizedBox(height: 15),
+
+                                 // ENLACE A TU PAGINA O PERFIL DE FACEBOOK
+                                InkWell(
+                                  onTap: () => launchUrl(Uri.parse("https://facebook.com")), // Reemplaza aquí con el enlace final de tu Facebook
+                                  child: Container(
+                                    width: screenWidth > 750 ? 392 : double.infinity,
+                                    padding: const EdgeInsets.all(22),
+                                    decoration: BoxDecoration(
+                                      color: const Color(0xFFF9F9F9),
+                                      border: Border.all(color: const Color(0xFFEFEFEF), width: 1),
+                                    ),
+                                    child: const Row(
+                                      children: [
+                                        Icon(Icons.facebook_outlined, color: Colors.black, size: 22), // Icono oficial de Facebook
+                                        SizedBox(width: 15),
+                                        Text("Síguenos en Facebook", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.black)),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+
                             
                                                             // ACCESO DIRECTO A WHATSAPP REAL (MÓVIL + PC CORREGIDO)
                                 InkWell(
@@ -512,7 +554,7 @@ class _HomeScreenState extends State<HomeScreen> {
               physics: const BouncingScrollPhysics(),
               child: Text(
                 (item['descripcion'] ?? '').toString().replaceAll('\\n', '\n'),
-                 maxLines: 50, // <-- MODIFICA AQUÍ: Cambia el número por la cantidad de líneas que desees
+                 maxLines: 200, // <-- MODIFICA AQUÍ: Cambia el número por la cantidad de líneas que desees
                 overflow: TextOverflow.ellipsis, // Recorta con puntos suspensivos (...) si el texto supera el límite
                 style: const TextStyle(color: Colors.black54, fontSize: 14, height: 1.5),
               ),
