@@ -399,8 +399,8 @@ class _HomeScreenState extends State<HomeScreen> {
                             const Text("Canales oficiales de asistencia técnica y comunidad:", style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600, color: Colors.black87)),
                             const SizedBox(height: 25),
 
-                           // =========================================================
-                            // CANAL 1: CORREO ELECTRÓNICO (PC + MÓVIL CORREGIDO)
+                                                       // =========================================================
+                            // CANAL 1: CORREO ELECTRÓNICO (PC + MÓVIL REPARADO)
                             // =========================================================
                             InkWell(
                               onTap: () async {
@@ -408,8 +408,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                 try {
                                   await launchUrl(
                                     emailUri,
-                                    // En la PC usa platformDefault para despertar Outlook/Mail, en móvil external Application
-                                    mode: kIsWeb ? LaunchMode.platformDefault : LaunchMode.externalApplication,
+                                    // SOLUCIÓN PC: Forzamos externalApplication para evitar la pantalla blanca en Chrome de escritorio
+                                    mode: LaunchMode.externalApplication, 
                                   );
                                 } catch (e) {
                                   debugPrint("Error al abrir correo: $e");
@@ -433,19 +433,19 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                             const SizedBox(height: 15),
 
-                            // CANALES RESPONSIVOS: WHATSAPP Y FACEBOOK
+                            // CANALES RESPONSIVOS: WHATSAPP
                             Wrap(
                               spacing: 15,
                               runSpacing: 15,
                               children: [
                                 // =========================================================
-                                // CANAL 2: WHATSAPP (PC + MÓVIL CORREGIDO DE RAÍZ)
+                                // CANAL 2: WHATSAPP (PC + MÓVIL ADAPTATIVO REPARADO)
                                 // =========================================================
                                 InkWell(
                                   onTap: () async {
                                     const String telefono = "527201494833";
                                     
-                                    // Si el usuario está en PC abrimos la pestaña web oficial, si está en móvil el protocolo nativo
+                                    // SOLUCIÓN MÓVIL: Si es PC usa la web oficial, si es móvil fuerza estrictamente el protocolo nativo whatsapp://
                                     final Uri whatsappUrl = kIsWeb 
                                         ? Uri.parse("https://whatsapp.com") 
                                         : Uri.parse("whatsapp://send?phone=$telefono");
@@ -453,10 +453,11 @@ class _HomeScreenState extends State<HomeScreen> {
                                     try {
                                       await launchUrl(
                                         whatsappUrl,
+                                        // En PC abrimos una pestaña externa; en móvil forzamos a que rompa el navegador Chrome móvil
                                         mode: kIsWeb ? LaunchMode.externalApplication : LaunchMode.externalNonBrowserApplication,
                                       );
                                     } catch (e) {
-                                      // Desvío de emergencia universal si algo falla
+                                      // Desvío de seguridad universal si falla el esquema nativo
                                       await launchUrl(
                                         Uri.parse("https://whatsapp.com"),
                                         mode: LaunchMode.externalApplication,
@@ -482,8 +483,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                     ),
                                   ),
                                 ),
-                                                            ],
+                              ],
                             ), // Cierre de Wrap
+
                           ],
                         ), // Cierre de Column interna
                       ), // Cierre de ConstrainedBox
