@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:flutter/foundation.dart'; // INDISPENSABLE: Para usar kIsWeb y detectar PC
+//import 'package:flutter/foundation.dart'; // INDISPENSABLE: Para usar kIsWeb y detectar PC
 
 
 void main() {
@@ -399,17 +399,20 @@ class _HomeScreenState extends State<HomeScreen> {
                             const Text("Canales oficiales de asistencia técnica y comunidad:", style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600, color: Colors.black87)),
                             const SizedBox(height: 25),
 
-                                                       // =========================================================
-                            // CANAL 1: CORREO ELECTRÓNICO (PC + MÓVIL REPARADO)
+
+
+                                                        // =========================================================
+                            // CANAL 1: CORREO ELECTRÓNICO (SOLUCIÓN DE INGENIERÍA PC + MÓVIL)
                             // =========================================================
                             InkWell(
                               onTap: () async {
                                 final Uri emailUri = Uri.parse("mailto:felixvargassoluciones@gmail.com");
                                 try {
+                                  // SOLUCIÓN PC: En web de escritorio usamos platformDefault para evitar que Chrome
+                                  // levante una pestaña en blanco (_blank) si el usuario no tiene Outlook configurado.
                                   await launchUrl(
                                     emailUri,
-                                    // SOLUCIÓN PC: Forzamos externalApplication para evitar la pantalla blanca en Chrome de escritorio
-                                    mode: LaunchMode.externalApplication, 
+                                    mode: screenWidth < 750 ? LaunchMode.externalApplication : LaunchMode.platformDefault,
                                   );
                                 } catch (e) {
                                   debugPrint("Error al abrir correo: $e");
@@ -439,25 +442,28 @@ class _HomeScreenState extends State<HomeScreen> {
                               runSpacing: 15,
                               children: [
                                 // =========================================================
-                                // CANAL 2: WHATSAPP (PC + MÓVIL ADAPTATIVO REPARADO)
+                                // CANAL 2: WHATSAPP (SOLUCIÓN DE INGENIERÍA ADAPTATIVA REAL)
                                 // =========================================================
                                 InkWell(
                                   onTap: () async {
                                     const String telefono = "527201494833";
                                     
-                                    // SOLUCIÓN MÓVIL: Si es PC usa la web oficial, si es móvil fuerza estrictamente el protocolo nativo whatsapp://
-                                    final Uri whatsappUrl = kIsWeb 
-                                        ? Uri.parse("https://whatsapp.com") 
-                                        : Uri.parse("whatsapp://send?phone=$telefono");
+                                    // DETECCIÓN FIABLE: Evaluamos si el ancho de pantalla corresponde a un Celular
+                                    bool esDispositivoMovil = screenWidth < 750;
+
+                                    final Uri whatsappUrl = esDispositivoMovil 
+                                        ? Uri.parse("whatsapp://send?phone=$telefono") // Esquema nativo exclusivo para celulares
+                                        : Uri.parse("https://whatsapp.com"); // URL de escritorio para PC
 
                                     try {
                                       await launchUrl(
                                         whatsappUrl,
-                                        // En PC abrimos una pestaña externa; en móvil forzamos a que rompa el navegador Chrome móvil
-                                        mode: kIsWeb ? LaunchMode.externalApplication : LaunchMode.externalNonBrowserApplication,
+                                        mode: esDispositivoMovil 
+                                            ? LaunchMode.externalNonBrowserApplication // Fuerza al celular a abrir tu selector de doble WhatsApp
+                                            : LaunchMode.externalApplication, // Abre una pestaña limpia de WhatsApp Web en la PC
                                       );
                                     } catch (e) {
-                                      // Desvío de seguridad universal si falla el esquema nativo
+                                      // Desvío universal de emergencia
                                       await launchUrl(
                                         Uri.parse("https://whatsapp.com"),
                                         mode: LaunchMode.externalApplication,
@@ -484,7 +490,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   ),
                                 ),
                               ],
-                            ), // Cierre de Wrap
+                            ), // Cierre
 
                           ],
                         ), // Cierre de Column interna
