@@ -92,7 +92,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     int columnas = screenWidth > 1200 ? 4 : (screenWidth > 700 ? 2 : 1);
-    double alturaTarjeta = screenWidth > 700 ? 460 : 420;
+    double alturaTarjeta = screenWidth > 700 ? 520 : 480;
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -544,7 +544,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 (item['descripcion'] ?? '').toString().replaceAll('\\n', '\n'),
                  maxLines: 200, // <-- MODIFICA AQUÍ: Cambia el número por la cantidad de líneas que desees
                 overflow: TextOverflow.ellipsis, // Recorta con puntos suspensivos (...) si el texto supera el límite
-                style: const TextStyle(color: Colors.black54, fontSize: 14, height: 1.5),
+                style: const TextStyle(color: Colors.black87, fontSize: 14, height: 1.5),
               ),
             ),
           ),
