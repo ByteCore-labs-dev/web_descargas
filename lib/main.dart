@@ -400,22 +400,8 @@ class _HomeScreenState extends State<HomeScreen> {
   
   // CORRECCIÓN DEL IF: Detecta si está en navegador Web y la pantalla es de PC (ancho mayor a 750)
   if (kIsWeb && MediaQuery.of(context).size.width > 750) {
-    // =========================================================================
-    // PROTOCOLO SEGURO PARA PC: Dispara el selector usando la API nativa de red
-    // =========================================================================
-    final Uri urlCorreoPC = Uri(
-      scheme: 'mailto',
-      path: correoDestino,
-      queryParameters: {
-        'subject': 'Soporte ByteCore Portal',
-      },
-    );
-
-    await launchUrl(
-      urlCorreoPC,
-      mode: LaunchMode.platformDefault,
-      webOnlyWindowName: '_self', // Enlaza directo al sistema operativo sin ventanas fantasma
-    );
+   final Uri urlCorreoPC = Uri.parse("mailto:$correoDestino");
+   await launchUrl(urlCorreoPC, mode: LaunchMode.platformDefault);
   } else {
     // ==========================================
     // TU CÓDIGO MÓVIL ORIGINAL (INTACTO AL 100%)
