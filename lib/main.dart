@@ -394,38 +394,15 @@ class _HomeScreenState extends State<HomeScreen> {
 
                             // CANAL 1: CORREO ELECTRÓNICO (INTERACTIVO ADAPTATIVO PC/MÓVIL)
                             InkWell(
-                            onTap: () async {
-  const String correoDestino = "felixvargassoluciones@gmail.com";
-  
-  if (kIsWeb && (defaultTargetPlatform == TargetPlatform.windows || 
-                 defaultTargetPlatform == TargetPlatform.macOS || 
-                 defaultTargetPlatform == TargetPlatform.linux)) {
-    // =========================================================================
-    // SOLUCIÓN DEFINITIVA PARA PC (FALLBACK SEGURO ANTI-CONGELAMIENTO)
-    // =========================================================================
-    final Uri urlNativa = Uri(
-      scheme: 'mailto',
-      path: correoDestino,
-      queryParameters: {'subject': 'Soporte ByteCore Portal'},
-    );
-
-    // Intentamos abrir el cliente nativo del sistema en la misma pestaña (_self)
-    // para evitar que Chrome genere hojas en blanco intermedias.
-    bool seLanzo = await launchUrl(
-      urlNativa,
-      mode: LaunchMode.platformDefault,
-      webOnlyWindowName: '_self',
-    );
-
-    // Si la PC no tiene Outlook/Correo predeterminado, 'seLanzo' será false o no hará nada.
-    // Aplicamos un desvío automático al compositor web de Gmail de forma segura en una pestaña limpia.
-    if (!seLanzo) {
-      final Uri urlContingencia = Uri.parse(
-        "https://google.com"
-      );
-      await launchUrl(urlContingencia, mode: LaunchMode.externalApplication);
-    }
-  } else {
+                              onTap: () async {
+                                const String correoDestino = "felixvargassoluciones@gmail.com"; 
+                                
+                                if (kIsWeb && (defaultTargetPlatform == TargetPlatform.windows || 
+                                               defaultTargetPlatform == TargetPlatform.macOS || 
+                                               defaultTargetPlatform == TargetPlatform.linux)) {
+                                  final Uri urlCorreoPC = Uri.parse("mailto:$correoDestino");
+                                  await launchUrl(urlCorreoPC, mode: LaunchMode.platformDefault);
+                                } else {
     // ==========================================
     // TU CÓDIGO MÓVIL ORIGINAL (INTACTO AL 100%)
     final Uri urlCorreoMovil = Uri.parse("mailto:$correoDestino");
