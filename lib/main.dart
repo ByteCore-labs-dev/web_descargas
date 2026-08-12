@@ -400,13 +400,18 @@ class _HomeScreenState extends State<HomeScreen> {
   if (kIsWeb && (defaultTargetPlatform == TargetPlatform.windows || 
                  defaultTargetPlatform == TargetPlatform.macOS || 
                  defaultTargetPlatform == TargetPlatform.linux)) {
-    // SOLUCIÓN SUPREMA PARA PC: Emula el selector interactivo del móvil
-   final Uri urlCorreoPC = Uri.parse("mailto:$correoDestino");
-    
+  final Uri urlCorreoPC = Uri(
+      scheme: 'mailto',
+      path: correoDestino,
+      queryParameters: {
+        'subject': 'Soporte ByteCore Portal',
+      },
+    );
+
+    // platformDefault transfiere el objeto Uri limpio directo a la API de red del navegador
     await launchUrl(
       urlCorreoPC,
       mode: LaunchMode.platformDefault,
-      webOnlyWindowName: '_top', // CORRECCIÓN CLAVE: Impide que Chrome genere pestañas intermedias de carga
     );
   } else {
     // ==========================================
