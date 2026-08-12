@@ -395,40 +395,28 @@ class _HomeScreenState extends State<HomeScreen> {
                             // CANAL 1: CORREO ELECTRÓNICO (INTERACTIVO ADAPTATIVO PC/MÓVIL)
                             InkWell(
                               onTap: () async {
-                                const String correoDestino = "felixvargassoluciones@gmail.com"; 
-                                
-                                if (kIsWeb && (defaultTargetPlatform == TargetPlatform.windows || 
-                                               defaultTargetPlatform == TargetPlatform.macOS || 
-                                               defaultTargetPlatform == TargetPlatform.linux)) {
-// -----------------------------------------------------------------
-      // PROTOCOLO DE CONEXIÓN PARA PC (SELECTOR DE SISTEMA CON FALLBACK)
-      // -----------------------------------------------------------------
-      final Uri urlCorreoPC = Uri(
-        scheme: 'mailto',
-        path: correoDestino,
-        queryParameters: {
-          'subject': 'Soporte ByteCore Portal',
-        },
-      );
+  // TU CORREO DE DESTINO OFICIAL RECONOCIDO POR EL SISTEMA
+  const String correoDestino = "felixvargassoluciones@gmail.com";
+  
+  // CORRECCIÓN DEL IF: Detecta si está en navegador Web y la pantalla es de PC (ancho mayor a 750)
+  if (kIsWeb && MediaQuery.of(context).size.width > 750) {
+    // =========================================================================
+    // PROTOCOLO SEGURO PARA PC: Dispara el selector usando la API nativa de red
+    // =========================================================================
+    final Uri urlCorreoPC = Uri(
+      scheme: 'mailto',
+      path: correoDestino,
+      queryParameters: {
+        'subject': 'Soporte ByteCore Portal',
+      },
+    );
 
-      // 1. Intentamos abrir el gestor del sistema en la pestaña activa para evitar hojas en blanco
-      bool seLanzo = await launchUrl(
-        urlCorreoPC,
-        mode: LaunchMode.platformDefault,
-        webOnlyWindowName: '_self',
-      );
-
-      // 2. Si la PC bloquea el comando (no hace nada), abrimos el redactor web universal de Gmail
-      if (!seLanzo) {
-        final Uri urlFallback = Uri.parse(
-          "https://google.com"
-        );
-        await launchUrl(
-          urlFallback,
-          mode: LaunchMode.externalApplication,
-        );
-      }
-                                } else {
+    await launchUrl(
+      urlCorreoPC,
+      mode: LaunchMode.platformDefault,
+      webOnlyWindowName: '_self', // Enlaza directo al sistema operativo sin ventanas fantasma
+    );
+  } else {
     // ==========================================
     // TU CÓDIGO MÓVIL ORIGINAL (INTACTO AL 100%)
     final Uri urlCorreoMovil = Uri.parse("mailto:$correoDestino");
@@ -436,6 +424,7 @@ class _HomeScreenState extends State<HomeScreen> {
     // ==========================================
   }
 },
+
 
                               child: Container(
                                 width: screenWidth > 750 ? 392 : double.infinity,
