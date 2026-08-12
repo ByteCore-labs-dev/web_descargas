@@ -2,8 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart';
-//import 'package:flutter/foundation.dart'; // INDISPENSABLE: Para usar kIsWeb y detectar PC
-
+import 'package:flutter/foundation.dart'; // INDISPENSABLE: Para usar kIsWeb y detectar PC
 
 void main() {
   runApp(const MyApp());
@@ -124,10 +123,10 @@ class _HomeScreenState extends State<HomeScreen> {
           // =========================================================
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 40.0, vertical: 20.0),
-            decoration: BoxDecoration(
-              color: Colors.white, // El color vive dentro de la decoración sin conflictos
+            decoration: const BoxDecoration(
+              color: Colors.white,
               border: Border(
-                bottom: BorderSide(color: const Color(0xFFEFEFEF), width: 1.5),
+                bottom: BorderSide(color: Color(0xFFEFEFEF), width: 1.5),
               ),
             ),
             child: Row(
@@ -217,7 +216,6 @@ class _HomeScreenState extends State<HomeScreen> {
                                     fontWeight: FontWeight.bold, 
                                     height: 1.1,
                                     letterSpacing: -1,
-                                        // --- NUEVO: Sombra de alto impacto para separar la letra del fondo ---
                                     shadows: [
                                       Shadow(
                                         color: Colors.black45,
@@ -230,24 +228,22 @@ class _HomeScreenState extends State<HomeScreen> {
                                 SizedBox(height: 16),
                                 SizedBox(
                                   width: 500,
-                                                                child: Text(
-                                "Una experiencia de descarga diseñada para tu comodidad: aplicaciones Android verificadas listas para instalar en un solo clic.",
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  color: Colors.white, // Pasado a blanco puro para más contraste
-                                  fontSize: 15, 
-                                  height: 1.5,
-                                  // CORREGIDO: shadows ahora vive felizmente DENTRO de las propiedades del TextStyle
-                                  shadows:  [
-                                    Shadow(
-                                      color: Colors.black54,
-                                      offset: Offset(0, 2),
-                                      blurRadius: 6,
+                                  child: Text(
+                                    "Una experiencia de descarga diseñada para tu comodidad: aplicaciones Android verificadas listas para instalar en un solo clic.",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      color: Colors.white, 
+                                      fontSize: 15, 
+                                      height: 1.5,
+                                      shadows: [
+                                        Shadow(
+                                          color: Colors.black54,
+                                          offset: Offset(0, 2),
+                                          blurRadius: 6,
+                                        ),
+                                      ],
                                     ),
-                                  ],
-                                ),
-                              ),
-
+                                  ),
                                 ),
                               ],
                             ),
@@ -256,7 +252,6 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ],
                   ),
-
                   // REJILLA DE PRODUCTOS (CATÁLOGO OFICIAL)
                   Container(
                     key: _seccionDescargasKey,
@@ -297,6 +292,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ],
                     ),
                   ),
+
                   // =========================================================
                   // SECCIÓN ANCLA: QUIÉNES SOMOS (TEXTO + CONTENEDOR FOTO)
                   // =========================================================
@@ -304,7 +300,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     key: _seccionQuienesSomosKey,
                     width: double.infinity,
                     padding: const EdgeInsets.symmetric(vertical: 120, horizontal: 40),
-                    color: const Color(0xFFFAFAFA), // Fondo sutil para separar secciones
+                    color: const Color(0xFFFAFAFA), 
                     child: Center(
                       child: ConstrainedBox(
                         constraints: const BoxConstraints(maxWidth: 1100),
@@ -312,10 +308,8 @@ class _HomeScreenState extends State<HomeScreen> {
                           spacing: 40,
                           runSpacing: 40,
                           alignment: WrapAlignment.center,
-                                                    crossAxisAlignment: WrapCrossAlignment.center, // CORREGIDO
-
+                          crossAxisAlignment: WrapCrossAlignment.center, 
                           children: [
-                            // BLOQUE DE TEXTOS
                             SizedBox(
                               width: screenWidth > 900 ? 550 : double.infinity,
                               child: Column(
@@ -326,18 +320,17 @@ class _HomeScreenState extends State<HomeScreen> {
                                   Container(width: 60, height: 3, color: Colors.black),
                                   const SizedBox(height: 35),
                                   const Text(
-                                     "bytecore-labs-dev es mi tienda personal de aplicaciones, un espacio exclusivo desarrollado para centralizar y facilitar el acceso a mis herramientas digitales.",
+                                    "bytecore-labs-dev es mi tienda personal de aplicaciones, un espacio exclusivo desarrollado para centralizar y facilitar el acceso a mis herramientas digitales.",
                                     style: TextStyle(fontSize: 18, color: Colors.black87, height: 1.6),
                                   ),
                                   const SizedBox(height: 15),
                                   const Text(
-                                     "Diseñada pensando estrictamente en la comodidad de mis usuarios, esta plataforma garantiza descargas directas, inmediatas y seguras de ejecutables nativos, eliminando intermediarios y optimizando tu experiencia.\n\nIng. Felix Vargas",
+                                    "Diseñada pensando estrictamente en la comodidad de mis usuarios, esta plataforma garantiza descargas directas, inmediatas y seguras de ejecutables nativos, eliminando intermediarios y optimizando tu experiencia.\n\nIng. Felix Vargas",
                                     style: TextStyle(fontSize: 15, color: Colors.black54, height: 1.6),
                                   ),
                                 ],
                               ),
                             ),
-                            // CONTENEDOR AJUSTADO PARA LA FOTO DE INFRAESTRUCTURA
                             Container(
                               width: screenWidth > 900 ? 450 : double.infinity,
                               height: 320,
@@ -356,7 +349,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(14),
                                 child: Image.asset(
-                                  'assets/imagenes/quienes_somos.jpeg', // Tu asset fotográfico local
+                                  'assets/imagenes/quienes_somos.jpeg', 
                                   fit: BoxFit.cover,
                                   errorBuilder: (context, error, stackTrace) {
                                     return const Center(
@@ -378,7 +371,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ),
                   ),
-                                    // =========================================================
+                  // =========================================================
                   // SECCIÓN ANCLA: CONTACTO (DATOS REALES INTEGRADOS)
                   // =========================================================
                   Container(
@@ -399,13 +392,23 @@ class _HomeScreenState extends State<HomeScreen> {
                             const Text("Canales oficiales de asistencia técnica y comunidad:", style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600, color: Colors.black87)),
                             const SizedBox(height: 25),
 
-
-
-                                                         // CANAL 1: CORREO ELECTRÓNICO (INTERACTIVO)
+                            // CANAL 1: CORREO ELECTRÓNICO (INTERACTIVO ADAPTATIVO PC/MÓVIL)
                             InkWell(
-                              onTap: () => launchUrl(Uri.parse("mailto:felixvargassoluciones@gmail.com")), // Abre gestor de correo
+                              onTap: () async {
+                                const String correoDestino = "soporte@tuempresa.com"; 
+                                
+                                if (kIsWeb && (defaultTargetPlatform == TargetPlatform.windows || 
+                                               defaultTargetPlatform == TargetPlatform.macOS || 
+                                               defaultTargetPlatform == TargetPlatform.linux)) {
+                                  final Uri urlCorreoPC = Uri.parse("mailto:$correoDestino");
+                                  await launchUrl(urlCorreoPC, mode: LaunchMode.externalApplication);
+                                } else {
+                                  final Uri urlCorreoMovil = Uri.parse("mailto:$correoDestino");
+                                  await launchUrl(urlCorreoMovil, mode: LaunchMode.externalNonBrowserApplication);
+                                }
+                              },
                               child: Container(
-                                width: double.infinity,
+                                width: screenWidth > 750 ? 392 : double.infinity,
                                 padding: const EdgeInsets.all(22),
                                 decoration: BoxDecoration(
                                   color: const Color(0xFFF9F9F9),
@@ -413,77 +416,79 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ),
                                 child: const Row(
                                   children: [
-                                    Icon(Icons.email_outlined, color: Colors.black, size: 22),
+                                    Icon(Icons.mail_outline, color: Colors.black, size: 22),
                                     SizedBox(width: 15),
-                                    Text("felixvargassoluciones@gmail.com", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.black)),
+                                    Text(
+                                      "soporte@tuempresa.com", 
+                                      style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.black),
+                                    ),
                                   ],
                                 ),
                               ),
                             ),
+                            
                             const SizedBox(height: 15),
 
-                                                      
-                            
-                                                                  // ACCESO DIRECTO A WHATSAPP (SOLUCIÓN DE INGENIERÍA PROTOCOLO NATIVO)
-                                InkWell(
-                                  onTap: () async {
-                                    const String telefono = "527201494833";
-                                    
-                                    // 1. Esquema URI nativo: Despierta la app móvil e inyecta tu destinatario en un chat nuevo
-                                    final Uri whatsappAppUrl = Uri.parse("whatsapp://send?phone=$telefono");
-                                    
-                                    // 2. Respaldo universal estándar únicamente para computadoras de escritorio (PC)
-                                    final Uri whatsappWebUrl = Uri.parse("https://whatsapp.com");
-
-                                    try {
-                                      // En Flutter Web para móviles, lanzamos el protocolo nativo de la app directamente
-                                      await launchUrl(
-                                        whatsappAppUrl,
-                                        mode: LaunchMode.externalNonBrowserApplication, // Fuerza al OS a interceptar el protocolo de la app
-                                      );
-                                    } catch (e) {
-                                      // Si falla (porque estamos en PC), redirige fluidamente al WhatsApp Web del navegador
-                                      await launchUrl(
-                                        whatsappWebUrl,
-                                        mode: LaunchMode.externalApplication,
-                                      );
-                                    }
-                                  },
-                                  child: Container(
-                                    width: screenWidth > 750 ? 392 : double.infinity,
-                                    padding: const EdgeInsets.all(22),
-                                    decoration: BoxDecoration(
-                                      color: const Color(0xFFF9F9F9),
-                                      border: Border.all(color: const Color(0xFFEFEFEF), width: 1),
-                                    ),
-                                    child: Row(
-                                      children: [
-                                        const Icon(Icons.forum_outlined, color: Colors.black, size: 22), 
-                                        const SizedBox(width: 15),
-                                        const Text(
-                                          "+52 720 149 4833", 
-                                          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.black),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
+                            // CANAL 2: ACCESO DIRECTO A WHATSAPP (INTERACTIVO ADAPTATIVO PC/MÓVIL)
+                            InkWell(
+                              onTap: () async {
+                                const String identificadorChat = "527201494833";
+                                
+                                if (kIsWeb && (defaultTargetPlatform == TargetPlatform.windows || 
+                                               defaultTargetPlatform == TargetPlatform.macOS || 
+                                               defaultTargetPlatform == TargetPlatform.linux)) {
+                                  final Uri urlPC = Uri.parse("https://whatsapp.com");
+                                  await launchUrl(urlPC, mode: LaunchMode.externalApplication);
+                                } else {
+                                  bool esCelular = screenWidth < 750;
+                                  final Uri urlDestino = esCelular 
+                                      ? Uri.parse("whatsapp://send?phone=$identificadorChat") 
+                                      : Uri.parse("https://whatsapp.com");
+                                  try {
+                                    await launchUrl(
+                                      urlDestino,
+                                      mode: esCelular ? LaunchMode.externalNonBrowserApplication : LaunchMode.externalApplication,
+                                    );
+                                  } catch (e) {
+                                    await launchUrl(
+                                      Uri.parse("https://whatsapp.com"),
+                                      mode: LaunchMode.externalApplication,
+                                    );
+                                  }
+                                }
+                              },
+                              child: Container(
+                                width: screenWidth > 750 ? 392 : double.infinity,
+                                padding: const EdgeInsets.all(22),
+                                decoration: BoxDecoration(
+                                  color: const Color(0xFFF9F9F9),
+                                  border: Border.all(color: const Color(0xFFEFEFEF), width: 1),
                                 ),
-
+                                child: const Row(
+                                  children: [
+                                    Icon(Icons.forum_outlined, color: Colors.black, size: 22), 
+                                    SizedBox(width: 15),
+                                    Text(
+                                      "+52 720 149 4833", 
+                                      style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.black),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
                           ],
-                        ), // Cierre de Column interna
-                      ), // Cierre de ConstrainedBox
-                    ), // Cierre de Center
-                  ), // Cierre de Container principal de Contacto
-                                ], // Línea 492: Cierre de la lista de secciones dentro del scroll
-              ), // Línea 493: Cierre de la Column del SingleChildScrollView
-            ), // Línea 494: Cierre del SingleChildScrollView
-          ), // Línea 495: Cierre del Expanded
-        ], // Línea 496: Cierre de la lista de hijos del body principal
-      ), // Línea 497: Cierre de la Column principal del body
-    ); // Línea 498: Cierre del Scaffold
-  } // Línea 499: Cierre definitivo del método build
-
-
+                        ), 
+                      ), 
+                    ), 
+                  ), 
+                ], 
+              ), 
+            ), 
+          ), 
+        ], 
+      ), 
+    ); 
+  } 
   // COMPONENTE DE TEXTO RESPONSIVO PARA ENLACES INDIVIDUALES DEL NAVBAR
   Widget _buildNavLink(String texto, {bool activo = false}) {
     return Padding(
@@ -542,8 +547,8 @@ class _HomeScreenState extends State<HomeScreen> {
               physics: const BouncingScrollPhysics(),
               child: Text(
                 (item['descripcion'] ?? '').toString().replaceAll('\\n', '\n'),
-                 maxLines: 200, // <-- MODIFICA AQUÍ: Cambia el número por la cantidad de líneas que desees
-                overflow: TextOverflow.ellipsis, // Recorta con puntos suspensivos (...) si el texto supera el límite
+                maxLines: 200, 
+                overflow: TextOverflow.ellipsis, 
                 style: const TextStyle(color: Colors.black87, fontSize: 14, height: 1.5),
               ),
             ),
