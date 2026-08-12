@@ -395,18 +395,25 @@ class _HomeScreenState extends State<HomeScreen> {
                             // CANAL 1: CORREO ELECTRÓNICO (INTERACTIVO ADAPTATIVO PC/MÓVIL)
                             InkWell(
                               onTap: () async {
-                                const String correoDestino = "felixvargassoluciones@gmail.com"; 
-                                
-                                if (kIsWeb && (defaultTargetPlatform == TargetPlatform.windows || 
-                                               defaultTargetPlatform == TargetPlatform.macOS || 
-                                               defaultTargetPlatform == TargetPlatform.linux)) {
-                                  final Uri urlCorreoPC = Uri.parse("mailto:$correoDestino");
-                                  await launchUrl(urlCorreoPC, mode: LaunchMode.platformDefault);
-                                } else {
-                                  final Uri urlCorreoMovil = Uri.parse("mailto:$correoDestino");
-                                  await launchUrl(urlCorreoMovil, mode: LaunchMode.externalNonBrowserApplication);
-                                }
-                              },
+  const String correoDestino = "felixvargassoluciones@gmail.com";
+  
+  if (kIsWeb && (defaultTargetPlatform == TargetPlatform.windows || 
+                 defaultTargetPlatform == TargetPlatform.macOS || 
+                 defaultTargetPlatform == TargetPlatform.linux)) {
+    // SOLUCIÓN WEB INTEGRADA: Abre el cliente de correo nativo sin pestañas huérfanas
+    await launchUrl(
+      Uri(scheme: 'mailto', path: correoDestino),
+      mode: LaunchMode.platformDefault,
+    );
+  } else {
+    // ==========================================
+    // TU CÓDIGO MÓVIL ORIGINAL (INTACTO AL 100%)
+    final Uri urlCorreoMovil = Uri.parse("mailto:$correoDestino");
+    await launchUrl(urlCorreoMovil, mode: LaunchMode.externalNonBrowserApplication);
+    // ==========================================
+  }
+},
+
                               child: Container(
                                 width: screenWidth > 750 ? 392 : double.infinity,
                                 padding: const EdgeInsets.all(22),
