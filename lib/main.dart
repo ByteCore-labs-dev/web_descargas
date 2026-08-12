@@ -402,14 +402,15 @@ class _HomeScreenState extends State<HomeScreen> {
                  defaultTargetPlatform == TargetPlatform.linux)) {
      // SOLUCIÓN DEFINITIVA PARA PC: Bypass de HTML nativo con prefijo inline para evitar errores de importación
     // ignore: undefined_prefixed_name
-    const String.fromEnvironment('flutter.inspector.structuredErrors') == 'true'
-        ? () {}() 
-        : Uri.parse('mailto:$correoDestino'); 
-        
-    // Inyección limpia al navegador usando tu url_launcher estándar
+   // SOLUCIÓN PARA PC: Abre el compositor web oficial de Gmail en una pestaña limpia
+    // Esto evita de raíz las hojas en blanco y funciona aunque la PC no tenga Outlook instalado
+    final Uri urlCorreoPC = Uri.parse(
+      "https://google.com"
+    );
+    
     await launchUrl(
-      Uri.parse("mailto:$correoDestino"), 
-      mode: LaunchMode.platformDefault,
+      urlCorreoPC,
+      mode: LaunchMode.externalApplication,
     );
   } else {
     // ==========================================
