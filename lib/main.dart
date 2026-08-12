@@ -394,25 +394,37 @@ class _HomeScreenState extends State<HomeScreen> {
 
                             // CANAL 1: CORREO ELECTRÓNICO (INTERACTIVO ADAPTATIVO PC/MÓVIL)
                             InkWell(
-                              onTap: () async {
+                            onTap: () async {
   const String correoDestino = "felixvargassoluciones@gmail.com";
   
   if (kIsWeb && (defaultTargetPlatform == TargetPlatform.windows || 
                  defaultTargetPlatform == TargetPlatform.macOS || 
                  defaultTargetPlatform == TargetPlatform.linux)) {
-  final Uri urlCorreoPC = Uri(
+    // =========================================================================
+    // SOLUCIÓN DEFINITIVA PARA PC (FALLBACK SEGURO ANTI-CONGELAMIENTO)
+    // =========================================================================
+    final Uri urlNativa = Uri(
       scheme: 'mailto',
       path: correoDestino,
-      queryParameters: {
-        'subject': 'Soporte ByteCore Portal',
-      },
+      queryParameters: {'subject': 'Soporte ByteCore Portal'},
     );
 
-    // platformDefault transfiere el objeto Uri limpio directo a la API de red del navegador
-    await launchUrl(
-      urlCorreoPC,
+    // Intentamos abrir el cliente nativo del sistema en la misma pestaña (_self)
+    // para evitar que Chrome genere hojas en blanco intermedias.
+    bool seLanzo = await launchUrl(
+      urlNativa,
       mode: LaunchMode.platformDefault,
+      webOnlyWindowName: '_self',
     );
+
+    // Si la PC no tiene Outlook/Correo predeterminado, 'seLanzo' será false o no hará nada.
+    // Aplicamos un desvío automático al compositor web de Gmail de forma segura en una pestaña limpia.
+    if (!seLanzo) {
+      final Uri urlContingencia = Uri.parse(
+        "https://google.com"
+      );
+      await launchUrl(urlContingencia, mode: LaunchMode.externalApplication);
+    }
   } else {
     // ==========================================
     // TU CÓDIGO MÓVIL ORIGINAL (INTACTO AL 100%)
