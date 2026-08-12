@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:flutter/foundation.dart'; // INDISPENSABLE: Para usar kIsWeb y detectar PC
+
 
 void main() {
   runApp(const MyApp());
@@ -397,9 +399,22 @@ class _HomeScreenState extends State<HomeScreen> {
                             const Text("Canales oficiales de asistencia técnica y comunidad:", style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600, color: Colors.black87)),
                             const SizedBox(height: 25),
 
-                            // CANAL 1: CORREO ELECTRÓNICO (INTERACTIVO)
+                           // =========================================================
+                            // CANAL 1: CORREO ELECTRÓNICO (PC + MÓVIL CORREGIDO)
+                            // =========================================================
                             InkWell(
-                              onTap: () => launchUrl(Uri.parse("mailto:felixvargassoluciones@gmail.com")), // Abre gestor de correo
+                              onTap: () async {
+                                final Uri emailUri = Uri.parse("mailto:felixvargassoluciones@gmail.com");
+                                try {
+                                  await launchUrl(
+                                    emailUri,
+                                    // En la PC usa platformDefault para despertar Outlook/Mail, en móvil external Application
+                                    mode: kIsWeb ? LaunchMode.platformDefault : LaunchMode.externalApplication,
+                                  );
+                                } catch (e) {
+                                  debugPrint("Error al abrir correo: $e");
+                                }
+                              },
                               child: Container(
                                 width: double.infinity,
                                 padding: const EdgeInsets.all(22),
@@ -418,29 +433,32 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                             const SizedBox(height: 15),
 
-                                                      
-                            
-                                                                  // ACCESO DIRECTO A WHATSAPP (SOLUCIÓN DE INGENIERÍA PROTOCOLO NATIVO)
+                            // CANALES RESPONSIVOS: WHATSAPP Y FACEBOOK
+                            Wrap(
+                              spacing: 15,
+                              runSpacing: 15,
+                              children: [
+                                // =========================================================
+                                // CANAL 2: WHATSAPP (PC + MÓVIL CORREGIDO DE RAÍZ)
+                                // =========================================================
                                 InkWell(
                                   onTap: () async {
                                     const String telefono = "527201494833";
                                     
-                                    // 1. Esquema URI nativo: Despierta la app móvil e inyecta tu destinatario en un chat nuevo
-                                    final Uri whatsappAppUrl = Uri.parse("whatsapp://send?phone=$telefono");
-                                    
-                                    // 2. Respaldo universal estándar únicamente para computadoras de escritorio (PC)
-                                    final Uri whatsappWebUrl = Uri.parse("https://whatsapp.com");
+                                    // Si el usuario está en PC abrimos la pestaña web oficial, si está en móvil el protocolo nativo
+                                    final Uri whatsappUrl = kIsWeb 
+                                        ? Uri.parse("https://whatsapp.com") 
+                                        : Uri.parse("whatsapp://send?phone=$telefono");
 
                                     try {
-                                      // En Flutter Web para móviles, lanzamos el protocolo nativo de la app directamente
                                       await launchUrl(
-                                        whatsappAppUrl,
-                                        mode: LaunchMode.externalNonBrowserApplication, // Fuerza al OS a interceptar el protocolo de la app
+                                        whatsappUrl,
+                                        mode: kIsWeb ? LaunchMode.externalApplication : LaunchMode.externalNonBrowserApplication,
                                       );
                                     } catch (e) {
-                                      // Si falla (porque estamos en PC), redirige fluidamente al WhatsApp Web del navegador
+                                      // Desvío de emergencia universal si algo falla
                                       await launchUrl(
-                                        whatsappWebUrl,
+                                        Uri.parse("https://whatsapp.com"),
                                         mode: LaunchMode.externalApplication,
                                       );
                                     }
@@ -452,11 +470,11 @@ class _HomeScreenState extends State<HomeScreen> {
                                       color: const Color(0xFFF9F9F9),
                                       border: Border.all(color: const Color(0xFFEFEFEF), width: 1),
                                     ),
-                                    child: Row(
+                                    child: const Row(
                                       children: [
-                                        const Icon(Icons.forum_outlined, color: Colors.black, size: 22), 
-                                        const SizedBox(width: 15),
-                                        const Text(
+                                        Icon(Icons.forum_outlined, color: Colors.black, size: 22), 
+                                        SizedBox(width: 15),
+                                        Text(
                                           "+52 720 149 4833", 
                                           style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.black),
                                         ),
@@ -464,25 +482,22 @@ class _HomeScreenState extends State<HomeScreen> {
                                     ),
                                   ),
                                 ),
-
-
-
-
-                            
+                                                            ],
+                            ), // Cierre de Wrap
                           ],
-                        ),
-                      ),
-                    ),
-                  ),
+                        ), // Cierre de Column interna
+                      ), // Cierre de ConstrainedBox
+                    ), // Cierre de Center
+                  ), // Cierre de Container principal de Contacto
+                                ], // Línea 492: Cierre de la lista de secciones dentro del scroll
+              ), // Línea 493: Cierre de la Column del SingleChildScrollView
+            ), // Línea 494: Cierre del SingleChildScrollView
+          ), // Línea 495: Cierre del Expanded
+        ], // Línea 496: Cierre de la lista de hijos del body principal
+      ), // Línea 497: Cierre de la Column principal del body
+    ); // Línea 498: Cierre del Scaffold
+  } // Línea 499: Cierre definitivo del método build
 
-                ],
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
 
   // COMPONENTE DE TEXTO RESPONSIVO PARA ENLACES INDIVIDUALES DEL NAVBAR
   Widget _buildNavLink(String texto, {bool activo = false}) {
