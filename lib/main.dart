@@ -401,23 +401,9 @@ class _HomeScreenState extends State<HomeScreen> {
 
 
 
-                                                        // =========================================================
-                            // CANAL 1: CORREO ELECTRÓNICO (SOLUCIÓN DE INGENIERÍA PC + MÓVIL)
-                            // =========================================================
+                                                         // CANAL 1: CORREO ELECTRÓNICO (INTERACTIVO)
                             InkWell(
-                              onTap: () async {
-                                final Uri emailUri = Uri.parse("mailto:felixvargassoluciones@gmail.com");
-                                try {
-                                  // SOLUCIÓN PC: En web de escritorio usamos platformDefault para evitar que Chrome
-                                  // levante una pestaña en blanco (_blank) si el usuario no tiene Outlook configurado.
-                                  await launchUrl(
-                                    emailUri,
-                                    mode: screenWidth < 750 ? LaunchMode.externalApplication : LaunchMode.platformDefault,
-                                  );
-                                } catch (e) {
-                                  debugPrint("Error al abrir correo: $e");
-                                }
-                              },
+                              onTap: () => launchUrl(Uri.parse("mailto:felixvargassoluciones@gmail.com")), // Abre gestor de correo
                               child: Container(
                                 width: double.infinity,
                                 padding: const EdgeInsets.all(22),
@@ -436,36 +422,29 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                             const SizedBox(height: 15),
 
-                            // CANALES RESPONSIVOS: WHATSAPP
-                            Wrap(
-                              spacing: 15,
-                              runSpacing: 15,
-                              children: [
-                                // =========================================================
-                                // CANAL 2: WHATSAPP (SOLUCIÓN DE INGENIERÍA ADAPTATIVA REAL)
-                                // =========================================================
+                                                      
+                            
+                                                                  // ACCESO DIRECTO A WHATSAPP (SOLUCIÓN DE INGENIERÍA PROTOCOLO NATIVO)
                                 InkWell(
                                   onTap: () async {
                                     const String telefono = "527201494833";
                                     
-                                    // DETECCIÓN FIABLE: Evaluamos si el ancho de pantalla corresponde a un Celular
-                                    bool esDispositivoMovil = screenWidth < 750;
-
-                                    final Uri whatsappUrl = esDispositivoMovil 
-                                        ? Uri.parse("whatsapp://send?phone=$telefono") // Esquema nativo exclusivo para celulares
-                                        : Uri.parse("https://whatsapp.com"); // URL de escritorio para PC
+                                    // 1. Esquema URI nativo: Despierta la app móvil e inyecta tu destinatario en un chat nuevo
+                                    final Uri whatsappAppUrl = Uri.parse("whatsapp://send?phone=$telefono");
+                                    
+                                    // 2. Respaldo universal estándar únicamente para computadoras de escritorio (PC)
+                                    final Uri whatsappWebUrl = Uri.parse("https://whatsapp.com");
 
                                     try {
+                                      // En Flutter Web para móviles, lanzamos el protocolo nativo de la app directamente
                                       await launchUrl(
-                                        whatsappUrl,
-                                        mode: esDispositivoMovil 
-                                            ? LaunchMode.externalNonBrowserApplication // Fuerza al celular a abrir tu selector de doble WhatsApp
-                                            : LaunchMode.externalApplication, // Abre una pestaña limpia de WhatsApp Web en la PC
+                                        whatsappAppUrl,
+                                        mode: LaunchMode.externalNonBrowserApplication, // Fuerza al OS a interceptar el protocolo de la app
                                       );
                                     } catch (e) {
-                                      // Desvío universal de emergencia
+                                      // Si falla (porque estamos en PC), redirige fluidamente al WhatsApp Web del navegador
                                       await launchUrl(
-                                        Uri.parse("https://whatsapp.com"),
+                                        whatsappWebUrl,
                                         mode: LaunchMode.externalApplication,
                                       );
                                     }
@@ -477,11 +456,11 @@ class _HomeScreenState extends State<HomeScreen> {
                                       color: const Color(0xFFF9F9F9),
                                       border: Border.all(color: const Color(0xFFEFEFEF), width: 1),
                                     ),
-                                    child: const Row(
+                                    child: Row(
                                       children: [
-                                        Icon(Icons.forum_outlined, color: Colors.black, size: 22), 
-                                        SizedBox(width: 15),
-                                        Text(
+                                        const Icon(Icons.forum_outlined, color: Colors.black, size: 22), 
+                                        const SizedBox(width: 15),
+                                        const Text(
                                           "+52 720 149 4833", 
                                           style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.black),
                                         ),
@@ -489,8 +468,6 @@ class _HomeScreenState extends State<HomeScreen> {
                                     ),
                                   ),
                                 ),
-                              ],
-                            ), // Cierre
 
                           ],
                         ), // Cierre de Column interna
