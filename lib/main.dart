@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'ApexFiles | Portal de Descargas Premium',
+      title: 'ByteCore-labs-dev | Portal de Descargas Premium',
       theme: ThemeData(
         scaffoldBackgroundColor: Colors.white, // Estética limpia de la referencia Suprema.
         fontFamily: 'sans-serif',
@@ -140,7 +140,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   highlightColor: Colors.transparent,
                   splashColor: Colors.transparent,
                   child: const Text(
-                    'ApexFiles.',
+                    'ByteCore-labs-dev.',
                     style: TextStyle(
                       color: Colors.black, 
                       fontSize: 24, 

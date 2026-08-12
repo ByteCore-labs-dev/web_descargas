@@ -67037,7 +67037,7 @@ s=s[0]
 return Math.sqrt(r*r+q*q+p*p+s*s)}}
 A.DR.prototype={
 R(a){var s=null
-return new A.up(B.AJ,"ApexFiles | Portal de Descargas Premium",A.adg(s,s,"sans-serif",B.i,s),!1,s)}}
+return new A.up(B.AJ,"ByteCore-labs-dev | Portal de Descargas Premium",A.adg(s,s,"sans-serif",B.i,s),!1,s)}}
 A.tQ.prototype={
 am(){var s=t.C
 return new A.Jc(A.a_I(),new A.bl(null,s),new A.bl(null,s),new A.bl(null,s),[])}}
@@ -67091,17 +67091,17 @@ r=d>700
 q=r?460:420
 p=f.x!==0?new A.oa(B.AT,B.k,new A.a6x(f),5,B.uX,B.Ow,e):e
 o=t.E
-n=A.d([A.it(!1,!0,B.OH,e,!0,e,e,B.W,B.W,e,e,e,e,e,new A.a6y(f),e,B.W,e,e)],o)
+n=A.d([A.it(!1,!0,B.OA,e,!0,e,e,B.W,B.W,e,e,e,e,e,new A.a6y(f),e,B.W,e,e)],o)
 if(r)n.push(A.vE(A.d([A.it(!1,!0,f.qK("Home",f.x===0),e,!0,e,e,e,e,e,e,e,e,e,new A.a6z(f),e,e,e,e),A.it(!1,!0,f.qK("Descargas",f.x===1),e,!0,e,e,e,e,e,e,e,e,e,new A.a6A(f),e,e,e,e),A.it(!1,!0,f.qK("Qui\xe9nes Somos",f.x===2),e,!0,e,e,e,e,e,e,e,e,e,new A.a6B(f),e,e,e,e),A.it(!1,!0,f.qK("Contacto",f.x===3),e,!0,e,e,e,e,e,e,e,e,e,new A.a6C(f),e,e,e,e)],o),B.aG,B.aH))
 r=A.dV(A.vE(n,B.pY,B.aH),e,new A.du(B.i,e,new A.cR(B.r,B.r,new A.bQ(B.c7,1.5,B.J,-1),B.r),e,e,e,B.at),e,e,e,B.Aq,e)
 n=A.a1T(B.dK,A.d([A.dV(A.dV(e,B.k.ng(0.55),e,e,e,e,e,e),e,B.xc,550,e,e,e,1/0),B.Hc],o),B.iR)
 m=A.dV(e,B.k,e,3,e,e,e,60)
 if(J.r_(f.w))l=B.yw
 else{l=J.cO(f.w)
-l=new A.CR(new A.a1G(s,40,30,q),new A.a1B(new A.a6D(f),l,!0,!0,!0,e),e,B.ae,!1,e,e,B.FH,!0,e,e,l,B.b5,e,e,B.ag,B.ai,e)}l=A.dV(A.rJ(A.d([B.Oz,B.Jp,B.OC,B.iQ,m,B.Jn,l],o),B.av),e,e,e,f.e,e,B.Ar,e)
+l=new A.CR(new A.a1G(s,40,30,q),new A.a1B(new A.a6D(f),l,!0,!0,!0,e),e,B.ae,!1,e,e,B.FH,!0,e,e,l,B.b5,e,e,B.ag,B.ai,e)}l=A.dV(A.rJ(A.d([B.Oz,B.Jp,B.OD,B.iQ,m,B.Jn,l],o),B.av),e,e,e,f.e,e,B.Ar,e)
 m=d>900
 k=m?550:1/0
-k=A.ki(A.rJ(A.d([B.OG,B.iQ,A.dV(e,B.k,e,3,e,e,e,60),B.vL,B.Oy,B.vJ,B.OA],o),B.av),e,k)
+k=A.ki(A.rJ(A.d([B.OH,B.iQ,A.dV(e,B.k,e,3,e,e,e,60),B.vL,B.Oy,B.vJ,B.OB],o),B.av),e,k)
 m=m?450:1/0
 j=A.l7(16)
 i=A.B_(B.c7,1.5)
@@ -67114,7 +67114,7 @@ i=k?392:1/0
 i=A.it(!1,!0,A.dV(B.Hz,e,new A.du(B.fV,e,A.B_(B.c7,1),e,e,e,B.at),e,e,e,B.h5,i),e,!0,e,e,e,e,e,e,e,e,e,new A.a6G(),e,e,e,e)
 k=k?392:1/0
 g=A.B_(B.c7,1)
-return new A.vH(A.rJ(A.d([r,A.RU(A.ahS(A.rJ(A.d([n,l,m,A.dV(A.Ba(new A.fc(B.xb,A.rJ(A.d([B.OF,B.iQ,h,B.vL,B.OJ,B.Jm,j,B.vJ,i,A.it(!1,!0,A.dV(A.vE(A.d([B.AU,B.iP,A.Gy("+52 720 149 4833",e,e,B.iX)],o),B.aG,B.aH),e,new A.du(B.fV,e,g,e,e,e,B.at),e,e,e,B.h5,k),e,!0,e,e,e,e,e,e,e,e,e,new A.a6H(),e,e,e,e)],o),B.av),e),e,e),B.i,e,e,f.r,e,B.kz,1/0)],o),B.av),f.d,e))],o),B.aQ),p,B.i,e)},
+return new A.vH(A.rJ(A.d([r,A.RU(A.ahS(A.rJ(A.d([n,l,m,A.dV(A.Ba(new A.fc(B.xb,A.rJ(A.d([B.OG,B.iQ,h,B.vL,B.OJ,B.Jm,j,B.vJ,i,A.it(!1,!0,A.dV(A.vE(A.d([B.AU,B.iP,A.Gy("+52 720 149 4833",e,e,B.iX)],o),B.aG,B.aH),e,new A.du(B.fV,e,g,e,e,e,B.at),e,e,e,B.h5,k),e,!0,e,e,e,e,e,e,e,e,e,new A.a6H(),e,e,e,e)],o),B.av),e),e,e),B.i,e,e,f.r,e,B.kz,1/0)],o),B.av),f.d,e))],o),B.aQ),p,B.i,e)},
 qK(a,b){var s=null,r=b?B.Fl:B.z
 return new A.dz(B.Ak,A.Gy(a,s,s,A.mR(s,s,r,s,s,s,s,s,s,s,s,14,s,s,b?B.ah:B.n,s,s,!0,s,s,s,s,s,s,s,s)),s)},
 UA(a){var s=null,r=A.l7(16),q=A.B_(B.c7,1.5),p=A.d([new A.fa(0,B.dN,B.k.ng(0.08),B.qh,20),new A.fa(0,B.dN,B.k.ng(0.02),B.qi,6)],t.sq),o=A.l7(10),n=J.bo(a),m=n.i(a,"ruta_imagen")
@@ -67125,7 +67125,7 @@ if(o==null)o=n.i(a,"nombre")
 o=A.Gy(J.ds(o==null?"SIN T\xcdTULO":o).toUpperCase(),s,s,B.LK)
 n=n.i(a,"descripcion")
 n=J.ds(n==null?"":n)
-return A.dV(A.rJ(A.d([m,B.vK,o,B.Jo,A.RU(A.ahS(A.Gy(A.aem(n,"\\n","\n"),200,B.iV,B.L8),s,B.x5)),B.vK,A.ki(new A.Cn(new A.a6r(this,a),s,s,s,A.apc(s,s,B.k,s,s,s,0,s,s,B.i,s,s,s,s,new A.ct(A.l7(8),B.r),s,s,s,s,s),s,s,!1,s,s,B.OD,s),48,1/0)],t.E),B.av),s,new A.du(B.i,s,q,r,p,s,B.at),s,s,s,B.Ap,s)}}
+return A.dV(A.rJ(A.d([m,B.vK,o,B.Jo,A.RU(A.ahS(A.Gy(A.aem(n,"\\n","\n"),200,B.iV,B.L8),s,B.x5)),B.vK,A.ki(new A.Cn(new A.a6r(this,a),s,s,s,A.apc(s,s,B.k,s,s,s,0,s,s,B.i,s,s,s,s,new A.ct(A.l7(8),B.r),s,s,s,s,s),s,s,!1,s,s,B.OE,s),48,1/0)],t.E),B.av),s,new A.du(B.i,s,q,r,p,s,B.at),s,s,s,B.Ap,s)}}
 A.a6s.prototype={
 $0(){this.a.w=this.b},
 $S:0}
@@ -69478,8 +69478,8 @@ B.Jk=new A.dm(null,10,null,null)
 B.e8=new A.C(0.3803921568627451,0,0,0,B.f)
 B.ah=new A.eh(700)
 B.MB=new A.j(!0,B.e8,null,null,null,null,11,B.ah,null,1,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null)
-B.OB=new A.cV("FOTO DE INFRAESTRUCTURA",null,B.MB,null,null,null,null)
-B.Cy=s([B.AY,B.Jk,B.OB],t.E)
+B.OC=new A.cV("FOTO DE INFRAESTRUCTURA",null,B.MB,null,null,null,null)
+B.Cy=s([B.AY,B.Jk,B.OC],t.E)
 B.zy=new A.nW(B.ae,B.i1,B.aH,B.aQ,null,B.bl,null,0,B.Cy,null)
 B.yu=new A.hh(B.R,null,null,B.zy,null)
 B.AQ=new A.io(61741,"MaterialIcons",!1)
@@ -71031,8 +71031,8 @@ B.AN=new A.io(61508,"MaterialIcons",!1)
 B.AV=new A.im(B.AN,22,B.k,null,null)
 B.iP=new A.dm(15,null,null,null)
 B.iX=new A.j(!0,B.k,null,null,null,null,16,B.ah,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null)
-B.OE=new A.cV("S\xedguenos en Facebook",null,B.iX,null,null,null,null)
-B.C7=s([B.AV,B.iP,B.OE],t.E)
+B.OF=new A.cV("S\xedguenos en Facebook",null,B.iX,null,null,null,null)
+B.C7=s([B.AV,B.iP,B.OF],t.E)
 B.Hz=new A.p0(B.an,B.aG,B.aH,B.aQ,null,B.bl,null,0,B.C7,null)
 B.AM=new A.io(61464,"MaterialIcons",!1)
 B.AW=new A.im(B.AM,22,B.k,null,null)
@@ -71573,17 +71573,17 @@ B.Lf=new A.j(!0,B.z,null,null,null,null,18,null,null,null,null,null,1.6,null,nul
 B.Oy=new A.cV("ApexFiles es mi tienda personal de aplicaciones, un espacio exclusivo desarrollado para centralizar y facilitar el acceso a mis herramientas digitales.",null,B.Lf,null,null,null,null)
 B.Ke=new A.j(!0,B.e8,null,null,null,null,12,B.ah,null,2,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null)
 B.Oz=new A.cV("REPOSITORIO OFICIAL",null,B.Ke,null,null,null,null)
-B.N7=new A.j(!0,B.y,null,null,null,null,15,null,null,null,null,null,1.6,null,null,null,null,null,null,null,null,null,null,null,null,null)
-B.OA=new A.cV("Dise\xf1ada pensando estrictamente en la comodidad de mis usuarios, esta plataforma garantiza descargas directas, inmediatas y seguras de ejecutables nativos, eliminando intermediarios y optimizando tu experiencia.\n\nIng. Felix Vargas",null,B.N7,null,null,null,null)
-B.L3=new A.j(!0,B.k,null,null,null,null,32,B.ah,null,-0.5,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null)
-B.OC=new A.cV("Herramientas y Aplicaciones",null,B.L3,null,null,null,null)
-B.Ld=new A.j(!0,null,null,null,null,null,13,B.ah,null,1,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null)
-B.OD=new A.cV("DOWNLOAD NOW",null,B.Ld,null,null,null,null)
-B.w3=new A.j(!0,B.k,null,null,null,null,42,B.hG,null,-1.5,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null)
-B.OF=new A.cV("CONTACTO.",null,B.w3,null,null,null,null)
-B.OG=new A.cV("QUI\xc9NES SOMOS.",null,B.w3,null,null,null,null)
 B.N0=new A.j(!0,B.k,null,null,null,null,24,B.ah,null,-0.5,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null)
-B.OH=new A.cV("ApexFiles.",null,B.N0,null,null,null,null)
+B.OA=new A.cV("ByteCore-labs-dev.",null,B.N0,null,null,null,null)
+B.N7=new A.j(!0,B.y,null,null,null,null,15,null,null,null,null,null,1.6,null,null,null,null,null,null,null,null,null,null,null,null,null)
+B.OB=new A.cV("Dise\xf1ada pensando estrictamente en la comodidad de mis usuarios, esta plataforma garantiza descargas directas, inmediatas y seguras de ejecutables nativos, eliminando intermediarios y optimizando tu experiencia.\n\nIng. Felix Vargas",null,B.N7,null,null,null,null)
+B.L3=new A.j(!0,B.k,null,null,null,null,32,B.ah,null,-0.5,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null)
+B.OD=new A.cV("Herramientas y Aplicaciones",null,B.L3,null,null,null,null)
+B.Ld=new A.j(!0,null,null,null,null,null,13,B.ah,null,1,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null)
+B.OE=new A.cV("DOWNLOAD NOW",null,B.Ld,null,null,null,null)
+B.w3=new A.j(!0,B.k,null,null,null,null,42,B.hG,null,-1.5,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null)
+B.OG=new A.cV("CONTACTO.",null,B.w3,null,null,null,null)
+B.OH=new A.cV("QUI\xc9NES SOMOS.",null,B.w3,null,null,null,null)
 B.L0=new A.j(!0,B.z,null,null,null,null,16,B.kI,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null)
 B.OJ=new A.cV("Canales oficiales de asistencia t\xe9cnica y comunidad:",null,B.L0,null,null,null,null)
 B.Rl=new A.a32(0,"system")
