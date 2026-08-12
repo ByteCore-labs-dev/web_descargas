@@ -400,8 +400,11 @@ class _HomeScreenState extends State<HomeScreen> {
                                 if (kIsWeb && (defaultTargetPlatform == TargetPlatform.windows || 
                                                defaultTargetPlatform == TargetPlatform.macOS || 
                                                defaultTargetPlatform == TargetPlatform.linux)) {
-                                  final Uri urlCorreoPC = Uri.parse("mailto:$correoDestino");
-                                  await launchUrl(urlCorreoPC, mode: LaunchMode.platformDefault);
+                                    await launchUrl(
+      Uri(scheme: 'mailto', path: correoDestino),
+      mode: LaunchMode.platformDefault,
+      webOnlyWindowName: '_self', // Enlaza directo al sistema operativo sin ventanas fantasma
+    );
                                 } else {
     // ==========================================
     // TU CÓDIGO MÓVIL ORIGINAL (INTACTO AL 100%)
