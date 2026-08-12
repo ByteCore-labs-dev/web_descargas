@@ -3,13 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/foundation.dart'; // INDISPENSABLE: Para usar kIsWeb y detectar PC
-import 'dart:js_interop'; // Dart 3 JS Interop: Seguro para compilación cruzada AOT nativa
-
-// =========================================================================
-// INTEROP COMPILATION SHIELD PARA ECOVISTAS DESKTOP (CERO WARNINGS EN VS CODE)
-// =========================================================================
-@JS('window')
-//external Object get _window;
 
 void main() {
   runApp(const MyApp());
@@ -38,6 +31,7 @@ class HomeScreen extends StatefulWidget {
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
+
 class _HomeScreenState extends State<HomeScreen> {
   // CONTROLADORES DE DESPLAZAMIENTO Y REFERENCIAS DE SECCIONES (ANCLAS)
   final ScrollController _scrollController = ScrollController();
@@ -95,25 +89,6 @@ class _HomeScreenState extends State<HomeScreen> {
       debugPrint('No se pudo abrir la ruta de descarga: $ruta');
     }
   }
-
-  /// Bypass de bajo nivel para inyectar de forma directa el intent sobre el Window Location del navegador.
-  /// Esto impide que url_launcher intente instanciar un target='_blank' implícito que clona el DOM.
-  void _launchMailtoDesktopBypass(String email) {
-    try {
-      final String mailtoUrl = 'mailto:$email';
-      // Accedemos de forma segura a través de globalContext para evitar dependencias con dart:html
-      (globalContext as dynamic).location.href = mailtoUrl;
-
-       final JSObject locationObj = (globalContext as Object).runtimeType == JSObject ? (globalContext as dynamic).location as JSObject : globalContext;
-
-       (locationObj as dynamic).href = mailtoUrl.toJS;
-
-
-    } catch (e) {
-      debugPrint('Bypass JS Interop falló: $e. Reasentando fallback estándar.');
-      launchUrl(Uri.parse("mailto:$email"), mode: LaunchMode.platformDefault);
-    }
-  }
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
@@ -166,7 +141,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   highlightColor: Colors.transparent,
                   splashColor: Colors.transparent,
                   child: const Text(
-                    'ByteCoreLab Store .',
+                    'ByteCoreLab Store. ING. Felix Vargas',
                     style: TextStyle(
                       color: Colors.black, 
                       fontSize: 24, 
@@ -345,7 +320,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   Container(width: 60, height: 3, color: Colors.black),
                                   const SizedBox(height: 35),
                                   const Text(
-                                    "bytecore-labs-dev es mi tienda personal de aplicaciones, un espacio exclusivo desarrollado para centralizar y facilitar el acceso a mis herramientas digitales.",
+                                    "ByteCoreLab Store es mi tienda personal de aplicaciones, un espacio exclusivo desarrollado para centralizar y facilitar el acceso a mis herramientas digitales.",
                                     style: TextStyle(fontSize: 18, color: Colors.black87, height: 1.6),
                                   ),
                                   const SizedBox(height: 15),
@@ -417,23 +392,26 @@ class _HomeScreenState extends State<HomeScreen> {
                             const Text("Canales oficiales de asistencia técnica y comunidad:", style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600, color: Colors.black87)),
                             const SizedBox(height: 25),
 
-                            // CANAL 1: CORREO ELECTRÓNICO (SOLUCIÓN ARQUITECTÓNICA DE BAJO NIVEL)
+                            // CANAL 1: CORREO ELECTRÓNICO (INTERACTIVO ADAPTATIVO PC/MÓVIL)
                             InkWell(
                               onTap: () async {
-                                const String correoDestino = "felixvargassoluciones@gmail.com";
-                                
-                                // Detección estricta: Navegador web sobre entorno de escritorio de PC
-                                if (kIsWeb && MediaQuery.of(context).size.width > 750) {
-                                  // Inyección directa limpia sin clonación de pestañas ni problemas de SSL
-                                  _launchMailtoDesktopBypass(correoDestino);
-                                } else {
-                                  // ==========================================
-                                  // COMPORTAMIENTO MÓVIL ORIGINAL (INTACTO AL 100%)
-                                  // ==========================================
-                                  final Uri urlCorreoMovil = Uri.parse("mailto:$correoDestino");
-                                  await launchUrl(urlCorreoMovil, mode: LaunchMode.externalNonBrowserApplication);
-                                }
-                              },
+  // TU CORREO DE DESTINO OFICIAL RECONOCIDO POR EL SISTEMA
+  const String correoDestino = "felixvargassoluciones@gmail.com";
+  
+  // CORRECCIÓN DEL IF: Detecta si está en navegador Web y la pantalla es de PC (ancho mayor a 750)
+  if (kIsWeb && MediaQuery.of(context).size.width > 750) {
+   final Uri urlCorreoPC = Uri.parse("mailto:$correoDestino");
+   await launchUrl(urlCorreoPC, mode: LaunchMode.platformDefault);
+  } else {
+    // ==========================================
+    // TU CÓDIGO MÓVIL ORIGINAL (INTACTO AL 100%)
+    final Uri urlCorreoMovil = Uri.parse("mailto:$correoDestino");
+    await launchUrl(urlCorreoMovil, mode: LaunchMode.externalNonBrowserApplication);
+    // ==========================================
+  }
+},
+
+
                               child: Container(
                                 width: screenWidth > 750 ? 392 : double.infinity,
                                 padding: const EdgeInsets.all(22),
@@ -459,21 +437,29 @@ class _HomeScreenState extends State<HomeScreen> {
                             // CANAL 2: ACCESO DIRECTO A WHATSAPP (INTERACTIVO ADAPTATIVO PC/MÓVIL)
                             InkWell(
                               onTap: () async {
-                                final Uri urlDestino = Uri.parse("https://wa.me{Uri.encodeComponent('Hola, solicito soporte técnico.')}");
-
-
-                                final bool esCelular = !kIsWeb || (screenWidth <= 750);
-
-                                try {
-                                  await launchUrl(
-                                    urlDestino,
-                                    mode: esCelular ? LaunchMode.externalNonBrowserApplication : LaunchMode.externalApplication,
-                                  );
-                                } catch (e) {
-                                  await launchUrl(
-                                    Uri.parse("https://whatsapp.com"),
-                                    mode: LaunchMode.externalApplication,
-                                  );
+                                const String identificadorChat = "527201494833";
+                                
+                                if (kIsWeb && (defaultTargetPlatform == TargetPlatform.windows || 
+                                               defaultTargetPlatform == TargetPlatform.macOS || 
+                                               defaultTargetPlatform == TargetPlatform.linux)) {
+                                  final Uri urlPC = Uri.parse("https://whatsapp.com");
+                                  await launchUrl(urlPC, mode: LaunchMode.externalApplication);
+                                } else {
+                                  bool esCelular = screenWidth < 750;
+                                  final Uri urlDestino = esCelular 
+                                      ? Uri.parse("whatsapp://send?phone=$identificadorChat") 
+                                      : Uri.parse("https://whatsapp.com");
+                                  try {
+                                    await launchUrl(
+                                      urlDestino,
+                                      mode: esCelular ? LaunchMode.externalNonBrowserApplication : LaunchMode.externalApplication,
+                                    );
+                                  } catch (e) {
+                                    await launchUrl(
+                                      Uri.parse("https://whatsapp.com"),
+                                      mode: LaunchMode.externalApplication,
+                                    );
+                                  }
                                 }
                               },
                               child: Container(
@@ -508,7 +494,6 @@ class _HomeScreenState extends State<HomeScreen> {
       ), 
     ); 
   } 
-
   // COMPONENTE DE TEXTO RESPONSIVO PARA ENLACES INDIVIDUALES DEL NAVBAR
   Widget _buildNavLink(String texto, {bool activo = false}) {
     return Padding(
