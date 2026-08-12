@@ -67165,11 +67165,11 @@ for(;;)switch(s){case 0:q=A.ds()===B.az||A.ds()===B.ay||A.ds()===B.ax
 s=q?2:4
 break
 case 2:s=5
-return A.R(A.nt(A.e5("mailto:soporte@tuempresa.com",0,null),B.d5),$async$$0)
+return A.R(A.nt(A.e5("mailto:felixvargassoluciones@gmail.com",0,null),B.d5),$async$$0)
 case 5:s=3
 break
 case 4:s=6
-return A.R(A.nt(A.e5("mailto:soporte@tuempresa.com",0,null),B.kS),$async$$0)
+return A.R(A.nt(A.e5("mailto:felixvargassoluciones@gmail.com",0,null),B.kS),$async$$0)
 case 6:case 3:return A.N(null,r)}})
 return A.O($async$$0,r)},
 $S:14}

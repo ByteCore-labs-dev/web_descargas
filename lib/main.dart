@@ -395,7 +395,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             // CANAL 1: CORREO ELECTRÓNICO (INTERACTIVO ADAPTATIVO PC/MÓVIL)
                             InkWell(
                               onTap: () async {
-                                const String correoDestino = "soporte@tuempresa.com"; 
+                                const String correoDestino = "felixvargassoluciones@gmail.com"; 
                                 
                                 if (kIsWeb && (defaultTargetPlatform == TargetPlatform.windows || 
                                                defaultTargetPlatform == TargetPlatform.macOS || 
