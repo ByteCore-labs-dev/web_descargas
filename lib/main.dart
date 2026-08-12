@@ -400,17 +400,47 @@ class _HomeScreenState extends State<HomeScreen> {
   if (kIsWeb && (defaultTargetPlatform == TargetPlatform.windows || 
                  defaultTargetPlatform == TargetPlatform.macOS || 
                  defaultTargetPlatform == TargetPlatform.linux)) {
-     // SOLUCIÓN DEFINITIVA PARA PC: Bypass de HTML nativo con prefijo inline para evitar errores de importación
-    // ignore: undefined_prefixed_name
-   // SOLUCIÓN PARA PC: Abre el compositor web oficial de Gmail en una pestaña limpia
-    // Esto evita de raíz las hojas en blanco y funciona aunque la PC no tenga Outlook instalado
-    final Uri urlCorreoPC = Uri.parse(
-      "https://google.com"
-    );
-    
-    await launchUrl(
-      urlCorreoPC,
-      mode: LaunchMode.externalApplication,
+    // SOLUCIÓN SUPREMA PARA PC: Emula el selector interactivo del móvil
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          backgroundColor: Colors.white,
+          shape: const RoundedRectangleBorder(borderRadius: BorderRadius.zero), // Estilo urbano plano
+          title: const Text(
+            "ENVIAR CORREO ELECTRÓNICO", 
+            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.black),
+          ),
+          content: const Text(
+            "Selecciona la plataforma que prefieras para ponerte en contacto:",
+            style: TextStyle(fontSize: 14, color: Colors.black87),
+          ),
+          actions: [
+            // Opción 1: Correo Web (Gmail) - Libre de errores y fallos de pestaña
+            TextButton(
+              onPressed: () async {
+                Navigator.of(context).pop();
+                await launchUrl(
+                  Uri.parse("https://google.com"),
+                  mode: LaunchMode.externalApplication,
+                );
+              },
+              child: const Text("ABRIR EN GMAIL (WEB)", style: TextStyle(color: Colors.cyan, fontWeight: FontWeight.bold)),
+            ),
+            // Opción 2: Aplicación del Sistema (Outlook / Correo Local)
+            TextButton(
+              onPressed: () async {
+                Navigator.of(context).pop();
+                await launchUrl(
+                  Uri(scheme: 'mailto', path: correoDestino),
+                  mode: LaunchMode.platformDefault,
+                );
+              },
+              child: const Text("APLICACIÓN DEL SISTEMA", style: TextStyle(color: Colors.black)),
+            ),
+          ],
+        );
+      },
     );
   } else {
     // ==========================================
