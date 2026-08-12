@@ -67037,7 +67037,7 @@ s=s[0]
 return Math.sqrt(r*r+q*q+p*p+s*s)}}
 A.DR.prototype={
 R(a){var s=null
-return new A.up(B.AJ,"ByteCore-labs-dev | Portal de Descargas Premium",A.adg(s,s,"sans-serif",B.i,s),!1,s)}}
+return new A.up(B.AJ,"ByteCore-labs-dev",A.adg(s,s,"sans-serif",B.i,s),!1,s)}}
 A.tQ.prototype={
 am(){var s=t.C
 return new A.Jc(A.a_I(),new A.bl(null,s),new A.bl(null,s),new A.bl(null,s),[])}}

@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'ByteCore-labs-dev | Portal de Descargas Premium',
+      title: 'ByteCore-labs-dev',
       theme: ThemeData(
         scaffoldBackgroundColor: Colors.white, // Estética limpia de la referencia Suprema.
         fontFamily: 'sans-serif',
