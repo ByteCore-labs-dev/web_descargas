@@ -401,7 +401,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                defaultTargetPlatform == TargetPlatform.macOS || 
                                                defaultTargetPlatform == TargetPlatform.linux)) {
                                   final Uri urlCorreoPC = Uri.parse("mailto:$correoDestino");
-                                  await launchUrl(urlCorreoPC, mode: LaunchMode.externalApplication);
+                                  await launchUrl(urlCorreoPC, mode: LaunchMode.platformDefault);
                                 } else {
                                   final Uri urlCorreoMovil = Uri.parse("mailto:$correoDestino");
                                   await launchUrl(urlCorreoMovil, mode: LaunchMode.externalNonBrowserApplication);
@@ -419,7 +419,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     Icon(Icons.mail_outline, color: Colors.black, size: 22),
                                     SizedBox(width: 15),
                                     Text(
-                                      "soporte@tuempresa.com", 
+                                      "felixvargassoluciones@gmail.com", 
                                       style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.black),
                                     ),
                                   ],
