@@ -194,7 +194,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   highlightColor: Colors.transparent,
                   splashColor: Colors.transparent,
                   child: const Text(
-                    'ByteCoreLab Store. Ing. Felix Vargas',
+                    'ByteCoreLab Store.',
                     style: TextStyle(
                       color: Colors.black, 
                       fontSize: 24, 
@@ -503,22 +503,31 @@ class _HomeScreenState extends State<HomeScreen> {
 
                                   // CANAL 2: ACCESO DIRECTO A WHATSAPP (CON ARREGLO DE VARIABLE INLINE PARA EL LINTER)
                                   InkWell(
-                                    onTap: () async {
-                                      final Uri urlDestino = Uri.parse("https://wa.me{Uri.encodeComponent('Hola, solicito soporte técnico.')}");
-                                      final bool esCelular = !kIsWeb || (screenWidth <= 750);
+                                   onTap: () async {
+                                     const String identificadorChat = "527201494833";
+                                
+                                if (MediaQuery.of(context).size.width >= 750)  {
+                                  final Uri urlPC = Uri.parse("https://whatsapp.com");
+                                  await launchUrl(urlPC, mode: LaunchMode.externalApplication);
+                                } else {
+                                  bool esCelular = screenWidth < 750;
+                                  final Uri urlDestino = esCelular 
+                                      ? Uri.parse("whatsapp://send?phone=$identificadorChat") 
+                                      : Uri.parse("https://whatsapp.com");
+                                  try {
+                                    await launchUrl(
+                                      urlDestino,
+                                      mode: esCelular ? LaunchMode.externalNonBrowserApplication : LaunchMode.externalApplication,
+                                    );
+                                  } catch (e) {
+                                    await launchUrl(
+                                      Uri.parse("https://whatsapp.com"),
+                                      mode: LaunchMode.externalApplication,
+                                    );
+                                  }
+                                }
+                              },
 
-                                      try {
-                                        await launchUrl(
-                                          urlDestino,
-                                          mode: esCelular ? LaunchMode.externalNonBrowserApplication : LaunchMode.externalApplication,
-                                        );
-                                      } catch (e) {
-                                        await launchUrl(
-                                          Uri.parse("https://whatsapp.com"),
-                                          mode: LaunchMode.externalApplication,
-                                        );
-                                      }
-                                    },
                                     child: Container(
                                       width: screenWidth > 750 ? 392 : double.infinity,
                                       padding: const EdgeInsets.all(22),
